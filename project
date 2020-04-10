@@ -1,0 +1,65 @@
+#originalfinal
+print("This program will give the all step to reach from source to destination for the game 'TOWER OF HANOI' for given number of discs.....")
+print("SRC=SOURCE\nAUX=AUXILURY\nDES=DESTINATION\n")
+print("ENTER THE NO OF DISCS LESS THAN OR EQUAL TO 8 AS VALID INPUT...")
+
+
+n=int(input("ENTER THE NUMBER OF DISCS  "))
+print("NUMBER OF DISCS ENTERED =",n)
+
+if(n>=1 and n<=8):
+    print("YOU HAVE ENTERED VALID NUMBER OF DISCS..")
+    s=[]
+    a=[]
+    d=[]
+    for j in range(1,n+1):
+        s.append(j)                
+        s.sort(reverse=True)                                        
+    print("STEPS TO REACH DESTINATION")
+    total=pow(2,n)-1                
+    for i in range(1,total+1):
+        if i%3==1:
+            if(len(s)!=0 and (len(d)==0 or s[len(s)-1]<d[len(d)-1])):                   
+                item_d=s.pop()
+                d.append(item_d)
+                if n%2!=0:
+                    print("SRC-->DES")
+                else:
+                    print("SRC-->AUX")
+            else:
+                item_s1=d.pop()
+                s.append(item_s1)
+                print("AUX-->SRC")
+            
+            
+        elif i%3==2:
+            if(len(s)!=0 and (len(a)==0 or s[len(s)-1]<a[len(a)-1])):                      
+                item_a=s.pop()
+                a.append(item_a)
+                if n%2!=0:
+                    print("SRC-->AUX")
+                else:
+                    print("SRC-->DES")
+            else:
+                item_s=a.pop()
+                s.append(item_s)
+                if n%2!=0:
+                    print("AUX-->SRC")
+                else:
+                    print("DES-->SRC")
+        elif i%3==0:
+            if(len(d)!=0 and a[len(a)-1]>d[len(d)-1]):                                   
+                item_xtra=d.pop()
+                a.append(item_xtra)
+                if n%2!=0:
+                    print("DES-->AUX")
+                else:
+                    print("AUX-->DES")
+            else:
+                d.append(a.pop())
+                if n%2!=0:
+                    print("AUX-->DES")
+                else:
+                    print("DES-->AUX")
+else:
+    print("YOU HAVE ENTERED INVALID NUMBER OF DISCS\nPLEASE ENTER VALID NUMBER OF DISCS")
